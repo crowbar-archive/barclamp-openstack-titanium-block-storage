@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS <%= @cinder_db_name %>;
+GRANT ALL ON <%= @cinder_db_name %>.* TO '<%= @cinder_db_user %>'@'%' IDENTIFIED BY '<%= @cinder_db_user_pwd %>';
+GRANT ALL ON <%= @cinder_db_name %>.* TO '<%= @cinder_db_user %>'@'localhost' IDENTIFIED BY '<%= @cinder_db_user_pwd %>';
+FLUSH PRIVILEGES;

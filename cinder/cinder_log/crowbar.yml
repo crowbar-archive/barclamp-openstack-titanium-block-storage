@@ -1,0 +1,95 @@
+# Copyright 2012, Dell Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+barclamp:
+  name: cinder
+  display: Cinder
+  description: 'Openstack block storage: persistent block level storage devices for use with OpenStack compute instances'
+  proposal_schema_version: 1
+  version: 0
+  member:
+    - haopenstack 
+  os_support:
+    - ubuntu-12.04
+
+crowbar:
+  layout: 1
+  order: 92 
+  run_order: 92
+  chef_order: 100
+
+debs:
+  ubuntu-12.04:
+    repos:
+      - deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/grizzly main
+      - deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-proposed/grizzly main
+  pkgs:
+    - tgt
+    - lvm2
+    # paramiko needed for SSH-based SAN drivers
+    - python-paramiko
+    - iscsitarget
+    - open-iscsi
+    - iscsitarget-dkms
+    - cinder-api
+    - cinder-scheduler
+    - cinder-volume
+    - python-cinder
+    - python-keystone
+
+locale_additions:
+  en:
+    nav:
+      cinder: Cinder
+    barclamp:
+      cinder:
+        edit_attributes: 
+          attributes: Attributes
+          rabbitmq_instance: RabbitMQ
+          database_instance: Database Instance 
+          keystone_instance: Keystone
+          glance_instance: Glance
+          service_user: Service user (for Keystone)
+          service_password: Service password
+          volume_header: Volume options
+          volume_type: Type of Volume
+          volume_name: Name of Volume
+          volume_file_parameters: File-based Parameters
+          volume_file_name: Volume File Name
+          volume_file_size: Maximum File Size (GB)
+          volume_file_size_error: Maximum File Size must be at least 2GB
+          volume_file_location: Volume File Location
+          volume_disk_parameters: Disk-based Parameters
+          volume_raw_mode: Disk selection method
+          eqlx_parameters: EQLX Parameters
+          eqlx_san_ip: EQLX SAN IP
+          eqlx_san_login: EQLX SAN login
+          eqlx_san_password: EQLX SAN password
+          eqlx_group_name: EQLX group name (prompt)
+          eqlx_san_thin_provision: Use thin provision for volumes
+          eqlx_use_chap: Use chap auth for targets
+          eqlx_chap_login: EQLX chap login for targets
+          eqlx_chap_password: EQLX chap password for targets
+          eqlx_ssh_keepalive_interval: EQLX SSH keepalive internal
+          eqlx_cli_timeout: EQLX CLI command execution timeout
+          eqlx_pool: EQLX pool name
+      cinder_edit_deployment:
+        deployment: Deployment
+
+git_repo:
+  - cinder https://github.com/openstack/cinder.git stable/grizzly
+
+git:
+  date: Fri Jul 19 15:16:16 2013 -0700
+  commit: 56e4b8a6c914bb2f40b229896cc26daa243dd377
