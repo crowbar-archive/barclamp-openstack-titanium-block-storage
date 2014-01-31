@@ -1,4 +1,4 @@
-# Copyright 2012, Dell Inc.
+# Copyright 2014, Dell Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,15 @@
 barclamp:
   name: cinder
   display: Cinder
-  description: 'Openstack block storage: persistent block level storage devices for use with OpenStack compute instances'
+  description: 'OpenStack HA - block storage: persistent block level storage devices for use with OpenStack compute instances' 
   proposal_schema_version: 1
   version: 0
+  requires:
+    - haproxy
+    - percona
+    - keystone
+    - rabbitmq
+    - glance
   member:
     - haopenstack 
   os_support:
@@ -27,7 +33,7 @@ crowbar:
   layout: 1
   order: 92 
   run_order: 92
-  chef_order: 100
+  chef_order: 92
 
 debs:
   ubuntu-12.04:

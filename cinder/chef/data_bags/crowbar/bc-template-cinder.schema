@@ -12,6 +12,8 @@
           "type": "map",
           "required": true,
           "mapping": {
+            "haproxy_instance": { "type": "str" },
+            "percona_instance": { "type": "str" },
             "debug": { "type": "bool", "required": true },
             "verbose": { "type": "bool", "required": true },
             "rabbitmq_instance": { "type": "str", "required": true },
