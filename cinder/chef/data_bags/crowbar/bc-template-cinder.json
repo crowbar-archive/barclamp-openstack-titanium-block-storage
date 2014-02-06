@@ -1,8 +1,10 @@
 {
   "id": "bc-template-cinder",
-  "description": "Installation for Cinder",
+  "description": "OpenStack HA - block storage: persistent block level storage devices for use with OpenStack compute instances",
   "attributes": {
     "cinder": {
+      "haproxy_instance": "",
+      "percona_instance": "",
       "debug": true,
       "verbose": true,
       "rabbitmq_instance": "none",
